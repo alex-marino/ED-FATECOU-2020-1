@@ -7,7 +7,9 @@
 
 int bruteSearch(char*, char*);
 
-int** calculateDfa(char*);
+int bruteSearchAlt(char*, char*);
+
+int** computeDfa(char*);
 
 int kmpSearch(char*, char*, int**);
 

@@ -8,11 +8,11 @@ int main() {
     scanf(" %[^\n]", pat);
 
     int i;
-    int** dfa = calculateDfa(pat);
+    int** dfa = computeDfa(pat);
 
     printf("Texto             :   %s\n", txt);
-    int offset = kmpSearch(txt, pat, dfa);
-//    int offset = bruteSearch(txt, pat);
+//    int offset = kmpSearch(txt, pat, dfa);
+    int offset = bruteSearchAlt(txt, pat);
     printf("Padrao            :   ");
     for (i = 0; i < offset; i++)
         printf(" ");
