@@ -52,7 +52,7 @@ void drawLineOnly(int tickLength) {
 }
 
 int binarySearch(int *data, int target, int low, int high) {
-    if (low<high){
+    if (low>high){
         return 0;
     } else {
         int mid = (low+high)/2;
@@ -61,7 +61,7 @@ int binarySearch(int *data, int target, int low, int high) {
         } else if(target < data[mid]){
             return binarySearch(data, target, low, mid-1);
         } else{
-            return binarySearch(data, target, low+1, mid);
+            return binarySearch(data, target, mid+1, high);
         }
     }
 }
