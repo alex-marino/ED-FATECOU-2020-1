@@ -18,6 +18,7 @@ int ListSize(struct Node *head){
         count++;
         curr=curr->next;
     }
+    return count;
 }
 
 void InsertInLisnkedList(struct Node **head, int val, int position){
