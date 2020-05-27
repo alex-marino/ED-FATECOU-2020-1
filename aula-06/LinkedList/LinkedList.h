@@ -9,6 +9,8 @@ int ListSize(struct Node*);
 
 void InsertInLisnkedList(struct Node **head, int val, int position);
 
-void DeleteFromLisnkedList(struct Node **head, int position)
+void DeleteFromLisnkedList(struct Node **head, int position);
+
+void DropLinkedList (struct Node **head);
 
 #endif //LINKEDLIST_LINKEDLIST_H

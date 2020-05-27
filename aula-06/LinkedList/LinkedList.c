@@ -10,15 +10,17 @@ struct Node{
     struct Node *next;
 };
 
-int ListSize(struct Node *head){
-    struct Node *curr = head;
+int ListSize(struct Node **head){
+    struct Node *curr = *head;
     int count = 0;
-
+    printf("%d", curr->data);
     while(curr!=NULL){
         count++;
         curr=curr->next;
+        if (curr!=NULL)
+            printf(" - %d", curr->data);
     }
-    return count;
+    printf("\n");
 }
 
 void InsertInLisnkedList(struct Node **head, int val, int position){
@@ -53,11 +55,12 @@ void DeleteFromLisnkedList(struct Node **head, int position){
         return;
     }
     p=*head;
-    if (position=1){ //exclui primeiro no
+    if (position==1){ //exclui primeiro no
         *head=(*head)->next;
         free(p);
         return;
     } else { //Percorre lista ate encontrar noh
+
         while ((p!=NULL) && (k<position)) {
             k++;
             q=p;
