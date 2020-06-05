@@ -18,9 +18,6 @@ void deleteLinkedList(NodePointer *head3);
 void P1_2020_1();
 void solveP1(char* s);
 int bruteSearch(char *txt, char *pat);
-int bruteSearchAlt(char *txt, char *pat);
-int** computeDfa(char *pat);
-int kmpSearch(char *txt, char *pat, int **dfa);
 void substring(char [], char[], int, int);
 
 
@@ -30,26 +27,18 @@ int main() {
 }
 
 void P1_2020_1(){
-		// Função preparada para receber os dados dos casos de teste 
     char s[201];
-    while(scanf("%s", s) == 1){
-        if (s[0]!=42){ //comparação com asterisco
-            solveP1(s);
-        } else{
-            break;
-        }
+    int N, i;
+    scanf("%d", &N);
+    for(i=0; i<N; i++){
+        scanf("%s", s);
+        solveP1(s);
     }
 }
 
 void solveP1(char* s){
-    NodePointer head = NULL;
-    /*
-     * Esta função deve conter sua implementação 
-     * esta função (atualmente) apenas imprime o resultado
-     */
-    printf("%d\n", countNodes(head));
-    deleteLinkedList(&head);
-
+    //Esta funÃ§Ã£o Ã© dedicada Ã  sua implementaÃ§Ã£o
+    printf("%d\n", 5);
 }
 
 
@@ -67,67 +56,6 @@ int bruteSearch(char *txt, char *pat) {
         if (j==M){
             return i;
         }
-    }
-    return -1;
-}
-
-int bruteSearchAlt(char *txt, char *pat) {
-    int M = strlen(pat);
-    int N = strlen(txt);
-    int i, j;
-    for(i=0, j=0; i<N && j<M; i++){
-        if (txt[i]==pat[j]){
-            j++;
-        } else {
-            i-=j;
-            j=0;
-        }
-    }
-    if (j==M){
-        return i-M;
-    } else {
-        return N;
-    }
-    return 0;
-}
-
-
-
-
-int** computeDfa(char *pat) {
-    int M = strlen(pat), i;
-    int R = 256;
-    int** dfa = (int**) malloc(255*sizeof(int*));
-    for(i=0; i<R; i++)
-        dfa[i] = (int*) malloc(M*sizeof(int));
-    int X, j, c;
-    dfa[*pat][0] = 1;
-    for (X = 0, j = 1; j < M; j++){
-        // calculate dfa[][j]
-        for(c = 0; c < R; c++){
-            dfa[c][j] = dfa[c][X];
-        }
-        dfa[pat[j]][j] = j+1;
-        X = dfa[pat[j]][X];
-    }
-    return dfa;
-}
-
-
-
-
-int kmpSearch(char *txt, char *pat, int **dfa) {
-    int j, M = strlen(pat);
-    int i, N = strlen(txt);
-
-    for (i = 0, j = 0; i < N && j < M; i++){
-        j = dfa[txt[i]][j];
-    }
-    if (j == M){
-        return i - M;
-    }
-    else{
-        return -1;
     }
     return -1;
 }
@@ -208,6 +136,7 @@ void deleteFromLinkedList(char word3[], NodePointer *head3){
             free(tempNode);
         }
     }
+    free(head3);
 }
 
 
@@ -238,7 +167,6 @@ int countNodes(NodePointer current){
 
 void deleteLinkedList(NodePointer *head3){
     NodePointer tempNode = NULL;
-    NodePointer previous = NULL;
     NodePointer current = *head3;
 
     if(NULL == current){
